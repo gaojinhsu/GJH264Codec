@@ -88,6 +88,7 @@ void GSDecompressionSessionDecodeFrameCallback(void *decompressionOutputRefCon,
 - (void)dealloc {
     if (_decodeFlag) {
         VTDecompressionSessionInvalidate(_decompressionSession);
+        CFRelease(_decompressionSession);
         _decompressionSession = NULL;
     }
     if (_formatDesc != NULL) {
@@ -315,6 +316,7 @@ void GSDecompressionSessionDecodeFrameCallback(void *decompressionOutputRefCon,
     // make sure to destroy the old VTD session
     if (_decompressionSession != NULL) {
         VTDecompressionSessionInvalidate(_decompressionSession);
+        CFRelease(_decompressionSession);
         _decompressionSession = NULL;
     }
     
